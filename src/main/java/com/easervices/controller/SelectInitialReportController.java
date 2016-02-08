@@ -16,8 +16,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.easervices.entities.AbrRegionSummary;
 import com.easervices.response.model.DepartmentChartModel;
 import com.easervices.response.model.SelectInitialReportModel;
+import com.easervices.response.model.SelectYOYChartDataModel;
 import com.easervices.service.EmpService;
 import com.easervices.service.SelectInitialReportService;
+import com.easervices.service.SelectYOYChartDataService;
 
 
 @Controller(value="sir")
@@ -40,6 +42,24 @@ public class SelectInitialReportController
 			
 		}
 		return (Map<String, List<SelectInitialReportModel>>) selectInitialReportService.process(requestParams);
+		
+	}
+	
+	@Autowired
+	private SelectYOYChartDataService selectYOYChartDataService;
+	
+	
+	@SuppressWarnings("unchecked")
+	@RequestMapping(value="sectyoy", method= RequestMethod.GET)
+	public @ResponseBody Map<String, List<SelectYOYChartDataModel>> getsectyoy(@RequestParam String cat_type)
+	{
+		Map<String, Object> requestParams = new HashMap<String, Object>();
+		if (cat_type!=null && cat_type !="") {
+			
+			requestParams.put("cat_type", cat_type.toString());
+			
+		}
+		return (Map<String, List<SelectYOYChartDataModel>>) selectYOYChartDataService.process(requestParams);
 		
 	}
 }
