@@ -1,6 +1,7 @@
 package com.easervices.controller;
 
 import java.math.BigDecimal;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -36,13 +37,14 @@ public class SelectInitialHistoryTrailController
 	public @ResponseBody Map<String, List<SelectInitialHistoryTrailModel>> getsectinithist(@RequestParam String report_year,String report_type, String report_period,String cat_type, String cat_id)
 	{
 		Map<String, Object> requestParams = new HashMap<String, Object>();
-		if (report_year!=null && report_year !="") {
+		if (report_year!=null && report_year != "") {
 			requestParams.put("report_year", report_year.toString());
 			}
 		if (report_type!=null && report_type !="") {
 			requestParams.put("report_type", report_type.toString());
 			}
-		if (report_period!=null && report_period !="") {
+		if (report_period!=null && report_period !="")
+				{
 			requestParams.put("report_period", report_period.toString());
 			}
 		if (cat_type!=null && cat_type !="") {

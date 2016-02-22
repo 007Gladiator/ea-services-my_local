@@ -24,14 +24,14 @@ import java.util.HashMap;
 @Component
 public class SelectReportDataService implements EAService {
 	
-	private String report_year = "'2015'";
-	private String report_type = "'M'";
-	private String region = "'Southeast'";
-	private String rvp_code = "'SC2'";
-	private String channel = "'Premise'";
-	private String branch_code = "'AS'";
-	private String report_period = "'01-02-2015'";
-	private String cat_type = "rvp_code";
+	private String report_year;// = "'2015'";
+	private String report_type;// = "'M'";
+	private String region;// = "'Southeast'";
+	private String rvp_code;// = "'SC2'";
+	private String channel;// = "'Premise'";
+	private String branch_code;// = "'AS'";
+	private String report_period;// = "'01-02-2015'";
+	private String cat_type;// = "rvp_code";
 	
 	
 
@@ -52,6 +52,36 @@ public class SelectReportDataService implements EAService {
 			where += StringFormatter.varToUnderScore(entry.getKey())
 					+ " like '%" + entry.getValue() + "%'";
 		}
+		for (Map.Entry<String, Object> entry : requestParams.entrySet()) {
+            String key = entry.getKey();
+            if(key == "report_year")
+            	report_year = "'"+(String) entry.getValue()+"'";
+            if(key == "report_type")
+            	report_type = "'"+(String) entry.getValue()+"'";
+            if(key == "region")
+            	region = "'"+(String) entry.getValue()+"'";
+            if(key == "rvp_code")
+            	rvp_code = "'"+(String) entry.getValue()+"'";
+            if(key == "channel")
+            	channel = "'"+(String) entry.getValue()+"'";
+            if(key == "branch_code")
+            	branch_code = "'"+(String) entry.getValue()+"'";
+            if(key == "report_period")
+            	report_period = "'"+(String) entry.getValue()+"'";
+            if(key == "cat_type")
+            	cat_type = "'"+(String) entry.getValue()+"'";
+           // List<Object> values =  (List<Object>) entry.getValue();
+            System.out.println("Key = " + key);
+            System.out.println("Values = "+entry.getValue());
+            System.out.println("value from report_year = "+report_year);
+            System.out.println("value from report_type = "+report_type);
+            System.out.println("value from report_period = "+report_period);
+            System.out.println("value from cat_type = "+cat_type);
+            System.out.println("value from channel = "+channel);
+            System.out.println("value from branch_code = "+branch_code);
+            System.out.println("value from report_period = "+report_period);
+            System.out.println("value from cat_type = "+cat_type);
+        }
 
 		return prepareResponse(abrRepo.getNativeQueryData(buildQuery(where)));
 	}
