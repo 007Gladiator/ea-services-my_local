@@ -1,5 +1,7 @@
 package com.easervices.response.model;
 
+import java.math.BigDecimal;
+
 import org.springframework.stereotype.Component;
 
 @Component
@@ -9,18 +11,18 @@ public class SelectYOYChartDataModel {
 private String prev_kpi_date;
 private String prev_kpi_date_lbl;
 private String prev_kpi_lbl;
-private String prev_kpi_val;
+private BigDecimal prev_kpi_val;
 private String kpi_date;
 private String kpi_date_lbl;
 private String kpi_lbl;
-private String kpi_val;
+private BigDecimal kpi_val;
 
 	public SelectYOYChartDataModel()
 		{
 			
 		}
 		
-		 public SelectYOYChartDataModel( String prev_kpi_date,String prev_kpi_date_lbl,String prev_kpi_lbl,String prev_kpi_val,String kpi_date,String kpi_date_lbl,String kpi_lbl,String kpi_val )
+		 public SelectYOYChartDataModel( String prev_kpi_date,String prev_kpi_date_lbl,String prev_kpi_lbl,BigDecimal prev_kpi_val,String kpi_date,String kpi_date_lbl,String kpi_lbl,BigDecimal kpi_val )
 		{
 			 		this.prev_kpi_date = prev_kpi_date;
 					this.prev_kpi_date_lbl = prev_kpi_date_lbl;
@@ -58,11 +60,11 @@ private String kpi_val;
 			this.prev_kpi_lbl = prev_kpi_lbl;
 		}
 
-		public String getPrev_kpi_val() {
+		public BigDecimal getPrev_kpi_val() {
 			return prev_kpi_val;
 		}
 
-		public void setPrev_kpi_val(String prev_kpi_val) {
+		public void setPrev_kpi_val(BigDecimal prev_kpi_val) {
 			this.prev_kpi_val = prev_kpi_val;
 		}
 
@@ -90,11 +92,11 @@ private String kpi_val;
 			this.kpi_lbl = kpi_lbl;
 		}
 
-		public String getKpi_val() {
+		public BigDecimal getKpi_val() {
 			return kpi_val;
 		}
 
-		public void setKpi_val(String kpi_val) {
+		public void setKpi_val(BigDecimal kpi_val) {
 			this.kpi_val = kpi_val;
 		}
 

@@ -57,7 +57,7 @@ public class SelectInitialHistoryTrailService implements EAService {
             if(key == "report_type")
             	report_type = "'"+(String) entry.getValue()+"'";
             if(key == "report_period")
-            	report_period = "'"+(String) entry.getValue()+"'";
+            	report_period =  "'"+(String) entry.getValue()+"'";
             if(key == "cat_type")
             	cat_type = "'"+(String) entry.getValue()+"'";
             if(key == "cat_id")

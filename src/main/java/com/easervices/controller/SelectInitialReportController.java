@@ -53,14 +53,45 @@ public class SelectInitialReportController
 	
 	@SuppressWarnings("unchecked")
 	@RequestMapping(value="sectyoy", method= RequestMethod.GET)
-	public @ResponseBody Map<String, List<SelectYOYChartDataModel>> getsectyoy(@RequestParam String cat_type)
+	public @ResponseBody Map<String, List<SelectYOYChartDataModel>> getsectyoy(@RequestParam String report_year ,@RequestParam String report_type ,@RequestParam String region ,@RequestParam String rvp_code ,@RequestParam String channel ,@RequestParam String branch_code , @RequestParam String data_field)
 	{
 		Map<String, Object> requestParams = new HashMap<String, Object>();
-		if (cat_type!=null && cat_type !="") {
+if (report_year!=null && report_year !="") {
 			
-			requestParams.put("cat_type", cat_type.toString());
+			requestParams.put("report_year", report_year.toString());
 			
 		}
+if (report_type!=null && report_type !="") {
+			
+			requestParams.put("report_type", report_type.toString());
+			
+		}
+if (region!=null && region !="") {
+			
+			requestParams.put("region", region.toString());
+			
+		}
+if (rvp_code!=null && rvp_code !="") {
+			
+			requestParams.put("rvp_code", rvp_code.toString());
+			
+		}
+if (channel!=null && channel !="") {
+			
+			requestParams.put("channel", channel.toString());
+			
+		}
+if (branch_code!=null && branch_code !="") {
+			
+			requestParams.put("branch_code", branch_code.toString());
+			
+		}
+if (data_field!=null && data_field !="") {
+	
+	requestParams.put("data_field", data_field.toString());
+	
+}
+
 		return (Map<String, List<SelectYOYChartDataModel>>) selectYOYChartDataService.process(requestParams);
 		
 	}
@@ -71,14 +102,50 @@ public class SelectInitialReportController
 	
 	@SuppressWarnings("unchecked")
 	@RequestMapping(value="sectrdata", method= RequestMethod.GET)
-	public @ResponseBody Map<String, List<SelectReportDataModel>> getsectrdata(@RequestParam String cat_type)
+	public @ResponseBody Map<String, List<SelectReportDataModel>> getsectrdata(@RequestParam String report_year ,@RequestParam String report_type ,@RequestParam String region ,@RequestParam String rvp_code ,@RequestParam String channel ,@RequestParam String branch_code,@RequestParam String report_period, @RequestParam String cat_type)
 	{
 		Map<String, Object> requestParams = new HashMap<String, Object>();
-		if (cat_type!=null && cat_type !="") {
+		
+if (report_year!=null && report_year !="") {
 			
-			requestParams.put("cat_type", cat_type.toString());
+			requestParams.put("report_year", report_year.toString());
 			
 		}
+if (report_type!=null && report_type !="") {
+			
+			requestParams.put("report_type", report_type.toString());
+			
+		}
+if (region!=null && region !="") {
+			
+			requestParams.put("region", region.toString());
+			
+		}
+if (rvp_code!=null && rvp_code !="") {
+			
+			requestParams.put("rvp_code", rvp_code.toString());
+			
+		}
+if (channel!=null && channel !="") {
+			
+			requestParams.put("channel", channel.toString());
+			
+		}
+if (branch_code!=null && branch_code !="") {
+			
+			requestParams.put("branch_code", branch_code.toString());
+			
+		}
+if (report_period!=null && report_period !="") {
+	
+	requestParams.put("report_period", report_period.toString());
+	
+}
+if (cat_type!=null && cat_type !="") {
+	
+	requestParams.put("cat_type", cat_type.toString());
+	
+}
 		return (Map<String, List<SelectReportDataModel>>) selectReportDataService.process(requestParams);
 		
 	}

@@ -24,13 +24,16 @@ import java.util.HashMap;
 @Component
 public class SelectYOYChartDataService implements EAService {
 	
-	private String report_year = "'2015'";
-	private String report_type = "'M'";
-	private String region = "'Southeast'";
-	private String rvp_code = "'SC2'";
-	private String channel = "'Premise'";
-	private String branch_code = "'AS'";
-	
+	private String report_year; //= "'2015'";
+	private String report_type; //= "'M'";
+	private String region; //= "'Southeast'";
+	private String rvp_code; //= "'SC2'";
+	private String channel; //= "'Premise'";
+	private String branch_code; //= "'AS'";
+	private String data_field;
+	//private String report_period;
+	//private String cat_id;
+	//private String cat_type;
 	
 
 	private static Logger logger = Logger.getLogger(SelectInitialReportService.class);
@@ -50,6 +53,34 @@ public class SelectYOYChartDataService implements EAService {
 			where += StringFormatter.varToUnderScore(entry.getKey())
 					+ " like '%" + entry.getValue() + "%'";
 		}
+		for (Map.Entry<String, Object> entry : requestParams.entrySet()) {
+            String key = entry.getKey();
+            if(key == "report_year")
+            	report_year = "'"+(String) entry.getValue()+"'";
+            if(key == "report_type")
+            	report_type = "'"+(String) entry.getValue()+"'";
+            if(key == "region")
+            	region = "'"+(String) entry.getValue()+"'";
+            if(key == "rvp_code")
+            	rvp_code = "'"+(String) entry.getValue()+"'";
+            if(key == "channel")
+            	channel = "'"+(String) entry.getValue()+"'";
+            if(key == "branch_code")
+            	branch_code = "'"+(String) entry.getValue()+"'";
+            if(key == "data_field")
+            	data_field = "'"+(String) entry.getValue()+"'";
+           // List<Object> values =  (List<Object>) entry.getValue();
+            System.out.println("Key = " + key);
+            System.out.println("Values = "+entry.getValue());
+            System.out.println("value from report_year = "+report_year);
+            System.out.println("value from report_type = "+report_type);
+            System.out.println("value from report_period = "+region);
+            System.out.println("value from rvp_code = "+rvp_code);
+            System.out.println("value from channel = "+channel);
+            System.out.println("value from branch_code = "+branch_code);
+            System.out.println("value from data_field = "+data_field);
+            
+        }
 
 		return prepareResponse(abrRepo.getNativeQueryData(buildQuery(where)));
 	}
@@ -69,7 +100,7 @@ public class SelectYOYChartDataService implements EAService {
 				// + "                  --when report_type = 'D' then start_report_period + (level-1) "
 				 + "             end) prev_report_period "
 				 // Hard coded data field = 'AYUSH' instead of input
-				 + "  from      (select  'AYUSH' data_field , "
+				 + "  from      (select  "+data_field+" data_field , "
 				 + "                    report_type "
 				 + "                   , "+report_year+" report_year "
 				 + "                   , (case report_type when 'X' then to_date('01'||"+report_year+",'MMYYYY') "
@@ -245,8 +276,8 @@ public class SelectYOYChartDataService implements EAService {
 		List<SelectYOYChartDataModel> list = new ArrayList<SelectYOYChartDataModel>();
 		for (Iterator iterator = data.iterator(); iterator.hasNext();) {
 			Object[] tuple = (Object[]) iterator.next();
-			list.add(new SelectYOYChartDataModel( tuple[0] + "",tuple[1] + "", tuple[2] + "",  tuple[3] + "",
-					tuple[4] + "",tuple[5] + "", tuple[6] + "", tuple[7] + ""));
+			list.add(new SelectYOYChartDataModel( tuple[0] + "",tuple[1] + "", tuple[2] + "", new BigDecimal (tuple[3] + ""),
+					tuple[4] + "",tuple[5] + "", tuple[6] + "", new BigDecimal(tuple[7] + "")));
 
 		}
 
